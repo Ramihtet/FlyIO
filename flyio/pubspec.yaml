@@ -1,0 +1,62 @@
+name: flyio
+description: A new Flutter project.
+
+dependencies:
+  flutter:
+    sdk: flutter
+  material_design_icons_flutter: 3.4.4995
+  http: ^0.12.0+4
+  async_loader: ^0.1.1
+  autocomplete_textfield: ^1.7.3
+  credit_card_type_detector: ^0.1.0
+  font_awesome_flutter: ^8.4.0
+  flutter_masked_text: ^0.8.0
+  firebase_auth: ^0.15.4
+  cloud_firestore: ^0.13.3
+  rflutter_alert: ^1.0.2
+  firebase_messaging: ^6.0.12
+  firebase_core: ^0.4.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+flutter:
+
+  uses-material-design: true
+  assets:
+    - assets/
+
+  fonts:
+    - family: PermanentMarker
+      fonts:
+        - asset: fonts/PermanentMarker-Regular.ttf
+
+    - family: Simonetta
+      fonts:
+        - asset: fonts/Simonetta-Black.ttf
+    - family: Indie
+      fonts:
+        - asset: fonts/IndieFlower-Regular.ttf
+    - family: Gloria
+      fonts:
+        - asset: fonts/GloriaHallelujah-Regular.ttf
+    - family: Paytone
+      fonts:
+        - asset: fonts/PaytoneOne-Regular.ttf
+
+
+
+
+
+#          GloriaHallelujah-Regular
+#    - family: WorkSans
+#      fonts:
+#        - asset: assets/fonts/WorkSans-Regular.ttf
+#        - asset: assets/fonts/WorkSans-Medium.ttf
+#          weight: 500
+#        - asset: assets/fonts/WorkSans-SemiBold.ttf
+#          weight: 600
+#        - asset: assets/fonts/WorkSans-Bold.ttf
+#          weight: 700
+

@@ -1,0 +1,178 @@
+[
+{
+        "iata": "AOG",
+        "lon": "123.857834",
+        "iso": "CN",
+        "status": 1,
+        "name": "Anshan Air Base",
+        "continent": "AS",
+        "type": "airport",
+        "lat": "41.103523",
+        "size": "medium"
+    },
+    {
+        "iata": "CGQ",
+        "lon": "125.217545",
+        "iso": "CN",
+        "status": 1,
+        "name": "Longjia Airport",
+        "continent": "AS",
+        "type": "airport",
+        "lat": "43.902836",
+        "size": "medium"
+    },
+    {
+        "iata": "CNI",
+        "lon": "121.433334",
+        "iso": "CN",
+        "status": 1,
+        "name": "Changhai Airport",
+        "continent": "AS",
+        "type": "airport",
+        "lat": "31.25",
+        "size": "medium"
+    },
+    {
+        "iata": "CHG",
+        "lon": "120.4372",
+        "iso": "CN",
+        "status": 1,
+        "name": "Chaoyang Airport",
+        "continent": "AS",
+        "type": "airport",
+        "lat": "41.545082",
+        "size": "medium"
+    },
+    {
+        "iata": "HRB",
+        "lon": "126.23644",
+        "iso": "CN",
+        "status": 1,
+        "name": "Taiping Airport",
+        "continent": "AS",
+        "type": "airport",
+        "lat": "45.620853",
+        "size": "large"
+    },
+    {
+        "iata": "HEK",
+        "lon": "127.433334",
+        "iso": "CN",
+        "status": 1,
+        "name": "Heihe Airport",
+        "continent": "AS",
+        "type": "airport",
+        "lat": "50.216667",
+        "size": "medium"
+    },
+    {
+        "iata": "JIL",
+        "lon": "126.65",
+        "iso": "CN",
+        "status": 1,
+        "name": "Jilin Airport",
+        "continent": "AS",
+        "type": "airport",
+        "lat": "43.86667",
+        "size": "small"
+    },
+    {
+        "iata": "JMU",
+        "lon": "130.45541",
+        "iso": "CN",
+        "status": 1,
+        "name": "Jiamusi Airport",
+        "continent": "AS",
+        "type": "airport",
+        "lat": "46.845394",
+        "size": "medium"
+    },
+    {
+        "iata": "JNZ",
+        "lon": "121.01667",
+        "iso": "CN",
+        "status": 1,
+        "name": "Jinzhou Airport",
+        "continent": "AS",
+        "type": "airport",
+        "lat": "41.11667",
+        "size": "medium"
+    },
+    {
+        "iata": "YUS",
+        "lon": "97.03748",
+        "iso": "CN",
+        "status": 1,
+        "name": "Yushu Batang Airport",
+        "continent": "AS",
+        "type": "airport",
+        "lat": "32.837975",
+        "size": "medium"
+    },
+    {
+        "iata": "MDG",
+        "lon": "129.58385",
+        "iso": "CN",
+        "status": 1,
+        "name": "Mudanjiang Hailang International Airport",
+        "continent": "AS",
+        "type": "airport",
+        "lat": "44.534943",
+        "size": "medium"
+    },
+    {
+        "iata": "OHE",
+        "lon": "122.42059",
+        "iso": "CN",
+        "status": 1,
+        "name": "Gu-Lian Airport",
+        "continent": "AS",
+        "type": "airport",
+        "lat": "52.92113",
+        "size": "medium"
+    },
+    {
+        "iata": "NDG",
+        "lon": "123.916664",
+        "iso": "CN",
+        "status": 1,
+        "name": "Qiqihar Sanjiazi Airport",
+        "continent": "AS",
+        "type": "airport",
+        "lat": "47.316666",
+        "size": "medium"
+    },
+    {
+        "iata": "DLC",
+        "lon": "121.53999",
+        "iso": "CN",
+        "status": 1,
+        "name": "Zhoushuizi Airport",
+        "continent": "AS",
+        "type": "airport",
+        "lat": "38.96102",
+        "size": "large"
+    },
+    {
+        "iata": "SHE",
+        "lon": "123.426926",
+        "iso": "CN",
+        "status": 1,
+        "name": "Taoxian Airport",
+        "continent": "AS",
+        "type": "airport",
+        "lat": "41.861084",
+        "size": "large"
+    },
+    {
+        "iata": "YNJ",
+        "lon": "129.43936",
+        "iso": "CN",
+        "status": 1,
+        "name": "Yanji Chaoyangchuan Airport",
+        "continent": "AS",
+        "type": "airport",
+        "lat": "42.885662",
+        "size": "medium"
+    }
+]

@@ -1,0 +1,172 @@
+{
+  "meta": {
+    "count": 13,
+    "links": {
+      "self": "https://test.api.amadeus.com/v1/reference-data/locations?subType=AIRPORT,CITY&keyword=CHARLES&page%5Blimit%5D=5",
+      "next": "https://test.api.amadeus.com/v1/reference-data/locations?subType=AIRPORT,CITY&keyword=CHARLES&page%5Boffset%5D=5&page%5Blimit%5D=5",
+      "last": "https://test.api.amadeus.com/v1/reference-data/locations?subType=AIRPORT,CITY&keyword=CHARLES&page%5Boffset%5D=8&page%5Blimit%5D=5"
+    }
+  },
+  "data": [
+    {
+      "type": "location",
+      "subType": "AIRPORT",
+      "name": "INTERNATIONAL AFB",
+      "detailedName": "CHARLESTON/SC/US:INTERNATIONAL",
+      "id": "ACHS",
+      "self": {
+        "href": "https://test.api.amadeus.com/v1/reference-data/locations/ACHS",
+        "methods": [
+          "GET"
+        ]
+      },
+      "timeZoneOffset": "-05:00",
+      "iataCode": "CHS",
+      "geoCode": {
+        "latitude": 32.89851,
+        "longitude": -80.04037
+      },
+      "address": {
+        "cityName": "CHARLESTON",
+        "cityCode": "CHS",
+        "countryName": "UNITED STATES OF AMERICA",
+        "countryCode": "US",
+        "stateCode": "SC",
+        "regionCode": "NAMER"
+      },
+      "analytics": {
+        "travelers": {
+          "score": 2
+        }
+      }
+    },
+    {
+      "type": "location",
+      "subType": "CITY",
+      "name": "INTERNATIONAL AFB",
+      "detailedName": "CHARLESTON/SC/US:INTERNATIONAL",
+      "id": "CCHS",
+      "self": {
+        "href": "https://test.api.amadeus.com/v1/reference-data/locations/CCHS",
+        "methods": [
+          "GET"
+        ]
+      },
+      "timeZoneOffset": "-05:00",
+      "iataCode": "CHS",
+      "geoCode": {
+        "latitude": 32.89851,
+        "longitude": -80.04037
+      },
+      "address": {
+        "cityName": "CHARLESTON",
+        "cityCode": "CHS",
+        "countryName": "UNITED STATES OF AMERICA",
+        "countryCode": "US",
+        "stateCode": "SC",
+        "regionCode": "NAMER"
+      },
+      "analytics": {
+        "travelers": {
+          "score": 2
+        }
+      }
+    },
+    {
+      "type": "location",
+      "subType": "AIRPORT",
+      "name": "CHARLES M SCHULZ",
+      "detailedName": "SANTA ROSA/CA/US:CHARLES M SCH",
+      "id": "ASTS",
+      "self": {
+        "href": "https://test.api.amadeus.com/v1/reference-data/locations/ASTS",
+        "methods": [
+          "GET"
+        ]
+      },
+      "timeZoneOffset": "-08:00",
+      "iataCode": "STS",
+      "geoCode": {
+        "latitude": 38.5088,
+        "longitude": -122.8139
+      },
+      "address": {
+        "cityName": "SANTA ROSA",
+        "cityCode": "STS",
+        "countryName": "UNITED STATES OF AMERICA",
+        "countryCode": "US",
+        "stateCode": "CA",
+        "regionCode": "NAMER"
+      },
+      "analytics": {
+        "travelers": {
+          "score": 1
+        }
+      }
+    },
+    {
+      "type": "location",
+      "subType": "CITY",
+      "name": "CHARLES M SCHULZ",
+      "detailedName": "SANTA ROSA/CA/US:CHARLES M SCH",
+      "id": "CSTS",
+      "self": {
+        "href": "https://test.api.amadeus.com/v1/reference-data/locations/CSTS",
+        "methods": [
+          "GET"
+        ]
+      },
+      "timeZoneOffset": "-08:00",
+      "iataCode": "STS",
+      "geoCode": {
+        "latitude": 38.5088,
+        "longitude": -122.8139
+      },
+      "address": {
+        "cityName": "SANTA ROSA",
+        "cityCode": "STS",
+        "countryName": "UNITED STATES OF AMERICA",
+        "countryCode": "US",
+        "stateCode": "CA",
+        "regionCode": "NAMER"
+      },
+      "analytics": {
+        "travelers": {
+          "score": 1
+        }
+      }
+    },
+    {
+      "type": "location",
+      "subType": "AIRPORT",
+      "name": "YEAGER",
+      "detailedName": "CHARLESTON/WV/US:YEAGER",
+      "id": "ACRW",
+      "self": {
+        "href": "https://test.api.amadeus.com/v1/reference-data/locations/ACRW",
+        "methods": [
+          "GET"
+        ]
+      },
+      "timeZoneOffset": "-05:00",
+      "iataCode": "CRW",
+      "geoCode": {
+        "latitude": 38.37306,
+        "longitude": -81.59306
+      },
+      "address": {
+        "cityName": "CHARLESTON",
+        "cityCode": "CRW",
+        "countryName": "UNITED STATES OF AMERICA",
+        "countryCode": "US",
+        "stateCode": "WV",
+        "regionCode": "NAMER"
+      },
+      "analytics": {
+        "travelers": {
+          "score": 1
+        }
+      }
+    }
+  ]
+}

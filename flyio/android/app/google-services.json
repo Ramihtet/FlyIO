@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "62147228760",
+    "firebase_url": "https://flyio-55bb0.firebaseio.com",
+    "project_id": "flyio-55bb0",
+    "storage_bucket": "flyio-55bb0.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:62147228760:android:ae7fbbacab7a4a9946062d",
+        "android_client_info": {
+          "package_name": "com.example.flyio"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "62147228760-6abc42h29ffaqveb2jnhm45qdgt3jluc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA8r9Bth6z8YJAg0bSleAGjpzVBYPNxL0c"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "62147228760-6abc42h29ffaqveb2jnhm45qdgt3jluc.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
