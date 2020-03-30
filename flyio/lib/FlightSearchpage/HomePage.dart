@@ -3,17 +3,18 @@ import 'package:flyio/FlightSearchpage/Bar.dart';
 import 'package:flyio/FlightSearchpage/Buttons.dart';
 import 'package:flyio/FlightSearchpage/InputCard.dart';
 
-class HomePage extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-
-    return new MaterialApp(
-      home: new FlightSearch(),
-    );
-  }
+class HomePage extends StatefulWidget {
+  FlightSearch createState()=> FlightSearch();
+//  @override
+//  Widget build(BuildContext context) {
+//
+//    return new MaterialApp(
+//      home: new FlightSearch(),
+//    );
+//  }
 }
 
-class FlightSearch extends StatelessWidget {
+class FlightSearch extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
@@ -40,14 +41,32 @@ class FlightSearch extends StatelessWidget {
   }
 
   Widget _buildButtonsRow() {
-  return Padding(
+  return Container(
         padding: const EdgeInsets.all(8.0),
-        child: Row(
-        children: <Widget>[
-          new RoundedButton(text: "ONE WAY"),
-          new RoundedButton(text: "ROUND"),
-        ],
+        child: Container(
+          child: Row(
+          children: <Widget>[
+            SizedBox(width: 20,),
+            GestureDetector(onTap: (){OneWay();},child: new RoundedButton(text: "ONE WAY"),),
+            GestureDetector(onTap: (){Round();},child : new RoundedButton(text: "ROUND",)),
+
+          ],
       ),
+        ),
     );
   }
+void Round(){
+  setState(() {
+    trip = true;
+
+
+  });
+}
+void OneWay(){
+    setState(() {
+      trip = false;
+
+
+    });
+}
 }

@@ -6,7 +6,7 @@ import 'package:flyio/List/Page.dart';
 import 'dart:convert';
 Future<Img> fetchImg(htt) async {
   String url = htt;
-  print(url);
+//  print(url);
   final response =
   await http.get(url,);
   if (response.statusCode == 200) {
@@ -14,7 +14,7 @@ Future<Img> fetchImg(htt) async {
 //    print("ho");
 //    print(token);
 //    print("hi");
-    print(response.body);
+//    print(response.body);
     if (response.body == null){throw Exception('Failed to load');}
 
     return Img.fromJson(json.decode(response.body));

@@ -23,14 +23,15 @@ class Bar extends StatelessWidget {
           height: 700,
         ),
         new AppBar(
-          leading: new IconButton(
-            icon: new Icon(Icons.arrow_back, color: Colors.black),
-            onPressed: () {
-              Navigator.push(context,
-                MaterialPageRoute(
-                    builder: (context) => Api4())
-            );},
-          ),
+//          leading: new IconButton(
+//            icon: new Icon(Icons.arrow_back, color: Colors.black),
+//            onPressed: () {
+//              Navigator.push(context,
+//                MaterialPageRoute(
+//                    builder: (context) => Api4())
+//            );
+//              },
+//          ),
           backgroundColor: Colors.transparent,
           elevation: 0.0,
           centerTitle: true,

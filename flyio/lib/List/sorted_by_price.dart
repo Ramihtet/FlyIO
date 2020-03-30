@@ -4,11 +4,8 @@ import 'dart:convert';
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flyio/FlightSearchpage/HomePage.dart';
-import 'package:flyio/main.dart';
-
 import 'package:flyio/FlightSearchpage/InputCard.dart';
 import 'package:async_loader/async_loader.dart';
-import 'package:flyio/FlightSearchpage/LoadingScreen.dart';
 import 'package:flyio/InfoScreen/screen.dart';
 import 'package:flyio/List/Filter.dart';
 import 'package:flyio/List/FetchInfo.dart';
@@ -16,23 +13,21 @@ import 'package:flyio/List/Getairlineclasses.dart' as g;
 import 'package:flyio/List/Getairlinename.dart';
 import 'package:flyio/List/classes.dart';
 import 'package:flyio/Globals.dart';
-import 'package:flyio/List/sorted_by_price.dart';
-import 'package:flutter/rendering.dart';
-import 'dart:ui' as ui;
+import 'package:flyio/List/Page.dart';
+
 //import 'package:main/Loading.dart';
 
 import 'package:http/http.dart' as http;
 
-//void main() => runApp(Api4());
+void main() => runApp(SortedByPrice());
 
 String priceC;
 String durationC;
 String companyC;
 String flightnumberC;
 String iatacode;
-var CurrentList = list_of_flight;
 
-class Api4 extends StatelessWidget {
+class SortedByPrice extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
@@ -60,9 +55,9 @@ class _Api extends State<Api> {
   @override
   void initState() {
     super.initState();
-    RenderErrorBox.backgroundColor = Colors.transparent;
-    RenderErrorBox.textStyle = ui.TextStyle(color: Colors.transparent);
-
+    for(var i = 0; i < CurrentList.data_list.length; i++){
+      print(CurrentList.data_list[i].itineraries[0].duration);
+    }
   }
   @override
   Widget build(BuildContext context) {
@@ -73,7 +68,7 @@ class _Api extends State<Api> {
       Scaffold(
           appBar: AppBar(
               backgroundColor: Colors.lightBlue,
-              title: Text('Flights',
+              title: Text('Sorted',
                   style: TextStyle(
                     color: Colors.black,
                   )),
@@ -95,10 +90,12 @@ class _Api extends State<Api> {
                 )
               ],
 //              leading: new IconButton(
-//                icon: new Icon(Icons.arrow_back, color: Colors.black),
+////                icon: new Icon(Icons.arrow_back, color: Colors.black),
 //                onPressed: () {
-//                  Navigator.pop(context);
-//                })
+//                  Navigator.push(context,
+//                      MaterialPageRoute(builder: (context) => HomePage()));
+//                },
+//              )
           ),
           body: Center(
               child: Screen(
@@ -143,7 +140,7 @@ class _Api extends State<Api> {
                                   .segments[0].number;
                           iatacode = snapshot1.data.data[0].iataCode;
                         });
-                        Navigator.pushReplacement(
+                        Navigator.push(
                             context,
                             MaterialPageRoute(
                                 builder: (context) => SecondScreen()));
@@ -234,20 +231,20 @@ class _Api extends State<Api> {
       setState(() {
         CurrentList = sorted_price;
         Navigator.push(context,
-            MaterialPageRoute(builder: (context) => SplashScreenPage()));
+            MaterialPageRoute(builder: (context) => Api4()));
       });
 
     } else if (choice == "By Duration") {
-//      print("hi");
-//      for(var i = 0; i < sorted_duration.data_list.length; i++){
-//        print(sorted_duration.data_list[i].itineraries[0].duration);
-//      }
-//      print("hello");
+      print("hi");
+      for(var i = 0; i < sorted_duration.data_list.length; i++){
+        print(sorted_duration.data_list[i].itineraries[0].duration);
+      }
+      print("hello");
 
       setState(() {
         CurrentList = sorted_duration;
         Navigator.push(context,
-            MaterialPageRoute(builder: (context) => SplashScreenPage()));
+            MaterialPageRoute(builder: (context) => Api4()));
       });
 
 
@@ -262,7 +259,7 @@ class _Api extends State<Api> {
       setState(() {
         CurrentList = sorted_dep;
         Navigator.push(context,
-            MaterialPageRoute(builder: (context) => SplashScreenPage()));
+            MaterialPageRoute(builder: (context) => Api4()));
       });
 
 

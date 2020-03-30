@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-
+bool trip = false;
+void oneWay(){trip = false;}
+void Round(){trip = true;}
 class RoundedButton extends StatelessWidget {
   final String text;
   final bool selected;
@@ -12,27 +14,27 @@ class RoundedButton extends StatelessWidget {
   Widget build(BuildContext context) {
     Color backgroundColor = selected ? Colors.white : Colors.transparent;
     Color textColor = selected ? Colors.red : Colors.white;
-    return Expanded(
-      child: Padding(
-        padding: const EdgeInsets.all(4.0),
-        child: new InkWell(
-          onTap: onTap,
-          child: new Container(
-            height: 36.0,
-            decoration: new BoxDecoration(
-              color: backgroundColor,
-              border: new Border.all(color: Colors.white, width: 1.0),
-              borderRadius: new BorderRadius.circular(30.0),
-            ),
-            child: new Center(
-              child: new Text(
-                text,
-                style: new TextStyle(color: textColor),
-              ),
+    return Padding(
+      padding: const EdgeInsets.all(4.0),
+      child: new InkWell(
+        onTap: onTap,
+        child: new Container(
+          height: 36.0,
+          width: 170,
+          decoration: new BoxDecoration(
+            color: backgroundColor,
+            border: new Border.all(color: Colors.white, width: 1.0),
+            borderRadius: new BorderRadius.circular(30.0),
+          ),
+          child: new Center(
+            child: new Text(
+              text,
+              style: new TextStyle(color: textColor),
             ),
           ),
         ),
       ),
-    );
+    )
+    ;
   }
 }

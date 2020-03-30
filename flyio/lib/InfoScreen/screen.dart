@@ -5,12 +5,12 @@ import 'package:flyio/FlightSearchpage/InputCard.dart';
 import 'package:flyio/Payment/CreditCardPage.dart';
 
 
-void main() {
-  runApp(MaterialApp(
-    title: "Flights",
-    home:SecondScreen(),
-  ));
-}
+//void main() {
+//  runApp(MaterialApp(
+//    title: "Flights",
+//    home:SecondScreen(),
+//  ));
+//}
 class SecondScreen extends StatelessWidget{
 
   @override
@@ -80,8 +80,11 @@ class SecondScreen extends StatelessWidget{
 //                                        SizedBox(height :10,),
                                         Row(
                                           children: <Widget>[
-                                            Image.network(
-                                              'https://daisycon.io/images/airline/?width=150&height=150&color=ffffff&iata='+iatacode,
+                                            Expanded(
+                                              child: Image.network(
+                                                'https://daisycon.io/images/airline/?width=150&height=150&color=ffffff&iata='+iatacode,
+                                        fit: BoxFit.cover
+                                              ),
                                             ),
                                             SizedBox(width: 30,),
                                             Column(
@@ -90,66 +93,61 @@ class SecondScreen extends StatelessWidget{
 
                                               children: <Widget>[
 
-                                                Container(
-                                                  alignment: Alignment.topLeft,
-                                                    height: 120,
-                                                    width: 200,
-//                                                    color: Colors.yellow ,
-                                                    child: Padding(
-                                                      padding: const EdgeInsets.fromLTRB(0, 10, 0, 0),
-                                                      child: Column(
+                                                Padding(
+                                                  padding: const EdgeInsets.fromLTRB(0, 10, 0, 0),
+                                                  child: Column(
+                                                    children: <Widget>[
+                                                      Row(
                                                         children: <Widget>[
-                                                          Row(
-                                                            children: <Widget>[
-                                                              Icon(Icons.monetization_on,color: Colors.blue[200],),
-                                                              SizedBox(width: 10,),
-                                                              Text(
-                                                                "Price : "+priceC,
-                                                                textAlign: TextAlign.left,
-                                                                style: TextStyle(
-                                                                  color: Colors.blue[800],
-                                                                  fontSize: 16,
-                                                                  fontFamily: "PermanentMarker",
-                                                                ),
-                                                              ),
-                                                            ],
+                                                          Icon(Icons.monetization_on,color: Colors.blue[200],),
+                                                          SizedBox(width: 10,),
+                                                          Text(
+                                                            "Price : "+priceC,
+                                                            textAlign: TextAlign.left,
+                                                            style: TextStyle(
+                                                              color: Colors.blue[800],
+                                                              fontSize: 16,
+                                                              fontFamily: "PermanentMarker",
+                                                            ),
                                                           ),
-                                                        SizedBox(height:15 ,),
-                                                          Row(
-                                                            children: <Widget>[
-                                                              Icon(Icons.hourglass_full,color: Colors.blue[200],),
-                                                              SizedBox(width: 10,),
-                                                              Text(
-                                                                "Duration : "+durationC,
-                                                                style: TextStyle(
-                                                                  color: Colors.blue[800],
-                                                                  fontSize: 16,
-                                                                  fontFamily: "PermanentMarker",
-                                                                ),
-                                                              ),
-                                                            ],
-                                                          ),
-                                                          SizedBox(height:15 ,),
-                                                          Row(
-                                                            children: <Widget>[
-                                                              Icon(Icons.flight,color: Colors.blue[200],),
-                                                              SizedBox(width: 10,),
-                                                              Text(
-                                                                "Number : "+flightnumberC,
-                                                                style: TextStyle(
-                                                                  color: Colors.blue[800],
-                                                                  fontSize: 16,
-                                                                  fontFamily: "PermanentMarker",
-                                                                ),
-                                                              ),
-                                                            ],
-                                                          ),
-
-
-
                                                         ],
                                                       ),
-                                                    ),
+                                                    SizedBox(height:15 ,),
+                                                      Row(
+                                                        children: <Widget>[
+                                                          Icon(Icons.hourglass_full,color: Colors.blue[200],),
+                                                          SizedBox(width: 10,),
+                                                          Text(
+                                                            "Duration : "+durationC,
+                                                            style: TextStyle(
+                                                              color: Colors.blue[800],
+                                                              fontSize: 16,
+                                                              fontFamily: "PermanentMarker",
+                                                            ),
+                                                          ),
+                                                        ],
+                                                      ),
+                                                      SizedBox(height:15 ,),
+                                                      Row(
+                                                        children: <Widget>[
+                                                          Icon(Icons.flight,color: Colors.blue[200],),
+                                                          SizedBox(width: 10,),
+
+                                                          Text(
+                                                            "Number : "+flightnumberC,
+                                                            style: TextStyle(
+                                                              color: Colors.blue[800],
+                                                              fontSize: 16,
+                                                              fontFamily: "PermanentMarker",
+                                                            ),
+                                                          ),
+                                                        ],
+                                                      ),
+
+
+
+                                                    ],
+                                                  ),
                                                 ),
                                                 SizedBox(height: 10,),
 
@@ -296,7 +294,7 @@ class SecondScreen extends StatelessWidget{
                   SizedBox(height: 20, ),
                   RaisedButton(
                     onPressed: (){print(priceC);
-                      Navigator.push(context,
+                      Navigator.pushReplacement(context,
                           MaterialPageRoute(
                               builder: (context) => CreditCard())
                       );

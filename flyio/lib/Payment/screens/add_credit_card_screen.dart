@@ -17,6 +17,8 @@ import 'package:flyio/List/Page.dart';
 import 'package:flyio/FlightOrganization/Front.dart';
 import 'package:flyio/FlightSearchpage/InputCard.dart';
 import 'package:flyio/Payment/CreditCardPage.dart';
+import 'package:flyio/Login/two.dart';
+import 'package:flyio/main.dart';
 
 
 class AddCreditCardScreen extends StatelessWidget {
@@ -421,46 +423,56 @@ class AddCreditCardScreen extends StatelessWidget {
             child: StreamBuilder(
                 stream: Firestore.instance.collection("Users").snapshots(),
               builder: (context, snapshot) {
-                return Center(
-                  child: MaterialButton(
-                    child: Text(
-                      "Save Card",
-                      style: TextStyle(
-                        color: Color(0xffffffff),
-                        fontSize: 16.0,
-                        fontWeight: FontWeight.w600,
-                      ),
-                    ),
-                    minWidth: 100,
-                    height: 50.0,
-                    color: Color(0xff4CD964),
-                    elevation: 0.0,
-                    onPressed: () {
+                return StreamBuilder(
+                  stream: Firestore.instance.collection("Flights").snapshots(),
+                  builder: (context, snapshot2) {
+                    return Center(
+                      child: MaterialButton(
+                        child: Text(
+                          "Save Card",
+                          style: TextStyle(
+                            color: Color(0xffffffff),
+                            fontSize: 16.0,
+                            fontWeight: FontWeight.w600,
+                          ),
+                        ),
+                        minWidth: 100,
+                        height: 50.0,
+                        color: Color(0xff4CD964),
+                        elevation: 0.0,
+                        onPressed: () {
 //            => _saveCard
-
-                      Firestore.instance.collection("Flights").document("seN9HtrtkDv2R2GrK1F1")
-                             .collection("Upcoming").add(
-                          {"Price":priceC,
-                            "Duration":durationC,
-                            "Company":companyC,
-                            "Flight_Number":flightnumberC,
-                            "From":wherefrom,
-                            "To":whereto,
-                            "Departure_Date":datedep,
+//                        if(Firestore.instance.collection("Flights").document(Emailcon.text)
+//                            .collection("Upcoming").document("Blank") == null){
+                          Firestore.instance.collection("Flights").document(Emailcon.text)
+                            .collection("Upcoming").document("Blank").delete();
+                          Firestore.instance.collection("Flights").document(Emailcon.text)
+                              .collection("Cancelled").document("Blank").delete();
 
 
 
-                          }
+                          Firestore.instance.collection("Flights").document(Emailcon.text)
+                                 .collection("Upcoming").add(
+                              {"Price":priceC,
+                                "Duration":durationC,
+                                "Company":companyC,
+                                "Flight_Number":flightnumberC,
+                                "From":wherefrom,
+                                "To":whereto,
+                                "Departure_Date":datedep,
+                              }
 
 
+                              );
+
+                          Navigator.pushReplacement(context,
+                              MaterialPageRoute(
+                                  builder: (context)=> Home())
                           );
-
-                      Navigator.push(context,
-                          MaterialPageRoute(
-                              builder: (context)=> StartPage())
-                      );
-                    },
-                  ),
+                        },
+                      ),
+                    );
+                  }
                 );
               }
             ),

@@ -15,7 +15,7 @@ String getairlinehttp(String iata){
 }
 Future<Airline> Getname(htt) async {
   String url = htt;
-  print(url);
+//  print(url);
   final response =
   await http.get(
       url,
@@ -27,7 +27,7 @@ Future<Airline> Getname(htt) async {
 //    print("ho");
 //    print(token);
 //    print("hi");
-    print(response.body);
+//    print(response.body);
     return Airline.fromJson(json.decode(response.body));
   } else {
     // If the server did not return a 200 OK response, then throw an exception.

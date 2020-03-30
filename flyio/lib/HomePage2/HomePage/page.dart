@@ -59,7 +59,7 @@ class Page extends StatelessWidget {
                 ),
               ),
 //            SizedBox(height: 0,),
-             new Row(
+              Row(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: <Widget>[
                   SizedBox(width: 40,),
@@ -73,7 +73,7 @@ class Page extends StatelessWidget {
                   Container(
                     child: Image(image: AssetImage('assets/cloud4.jpeg'),fit: BoxFit.fill,),
                     height: 150,
-                    width: 150,
+                    width: 160,
                     color: Colors.black,
                   ),
                 ],

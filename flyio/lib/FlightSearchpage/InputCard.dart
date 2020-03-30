@@ -11,6 +11,7 @@ import 'package:flutter/services.dart' show rootBundle;
 import 'dart:convert';
 import 'package:flyio/List/Page.dart';
 import 'package:async_loader/async_loader.dart';
+import 'package:flyio/FlightSearchpage/Buttons.dart';
 
 class ContentCard extends StatefulWidget {
   @override
@@ -36,6 +37,10 @@ String printing(to,from,pass,datedep){
   print("https://test.api.amadeus.com/v2/shopping/flight-offers?originLocationCode="+from+"&destinationLocationCode="+to+"&departureDate="+datedep+"&adults="+pass+"&max=10");
   return "https://test.api.amadeus.com/v2/shopping/flight-offers?originLocationCode="+from+"&destinationLocationCode="+to+"&departureDate="+datedep+"&adults="+pass+"&max=10";
 }
+String printing_round(to,from,pass,datedep,datearr){
+  print("https://test.api.amadeus.com/v2/shopping/flight-offers?originLocationCode="+from+"&destinationLocationCode="+to+"&departureDate="+datedep+"&returnDate="+datearr+"&adults="+pass+"&max=10");
+  return "https://test.api.amadeus.com/v2/shopping/flight-offers?originLocationCode="+from+"&destinationLocationCode="+to+"&departureDate="+datedep+"&returnDate="+datearr+"&adults="+pass+"&max=10";
+}
 Future<String> _loadCrosswordAsset() async {
   return await rootBundle.loadString('assets/airports.json');
 }
@@ -53,7 +58,7 @@ Future<String> loadIata() async {
 String showIata(String airport) {
 //  print(jsonCrossword);
   decoded = jsonDecode(jsonCrossword);
-  print(decoded[airport]);
+//  print(decoded[airport]);
   return decoded[airport];
 
 }
@@ -164,6 +169,8 @@ class _ContentCardState extends State<ContentCard> {
       children: <Widget>[
         FlightInput(),
         Expanded(child: Container()),
+        SizedBox(height: 20,),
+
         Row(
         mainAxisAlignment: MainAxisAlignment.start,
         children: <Widget>[
@@ -176,6 +183,7 @@ class _ContentCardState extends State<ContentCard> {
                       return FloatingActionButton(
                         onPressed: () {
                           setState(() {
+
                             whereto = wheretocon.text;
                             wherefrom = wherefromcon.text;
                             loadIata();
@@ -183,7 +191,8 @@ class _ContentCardState extends State<ContentCard> {
                             wheretofinal = showIata(whereto);
                             pass = passcon.text;
 //                            print(datedep);
-                            httpp = printing(wheretofinal, wherefromfinal, pass, datedep);
+                            if(trip){httpp = printing_round(wheretofinal, wherefromfinal, pass, datedep,datearr);}
+                            else{httpp = printing(wheretofinal, wherefromfinal, pass, datedep);}
                             token = snapshot.data.accessToken;
 //                            print(token);
                           });
@@ -191,7 +200,7 @@ class _ContentCardState extends State<ContentCard> {
 
                           Navigator.push(context,
                               MaterialPageRoute(
-                                  builder: (context) => Api4())
+                                  builder: (context) => Api())
                           );
                         },
                         child: Icon(Icons.arrow_forward_ios, size: 31.0),
@@ -211,4 +220,6 @@ class _ContentCardState extends State<ContentCard> {
       ],
     );
   }
+
+
 }
