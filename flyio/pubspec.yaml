@@ -45,7 +45,18 @@ flutter:
     - family: Paytone
       fonts:
         - asset: fonts/PaytoneOne-Regular.ttf
-
+    - family: Amiri
+      fonts:
+        - asset: fonts/Amiri-Regular.ttf
+    - family: Anton
+      fonts:
+        - asset: fonts/Anton-Regular.ttf
+    - family: ComicNeue
+      fonts:
+        - asset: fonts/ComicNeue-Regular.ttf
+    - family: Lalezar
+      fonts:
+        - asset: fonts/Lalezar-Regular.ttf
 
 
 

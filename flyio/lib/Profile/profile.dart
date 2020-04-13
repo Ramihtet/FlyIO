@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flyio/Login/two.dart';
+import 'package:flyio/main.dart';
 import 'package:flyio/Profile/bar.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flyio/Profile/ContactUs.dart';
-import 'package:flyio/Login/two.dart';
 import 'package:flyio/Profile/TermsAndConditions.dart';
 import 'package:flyio/Profile/PrivacyPolicy.dart';
 
@@ -37,7 +36,7 @@ class Account extends StatelessWidget {
 //                  new Text(
 //                    "John Cena",
 //                    textScaleFactor: 2.5,
-//                    style: TextStyle(fontFamily: 'PermanentMarker',color: Colors.black),
+//                    style: TextStyle(fontFamily: 'Anton',color: Colors.black),
 //                  ),
                 Container(
                   width: 95.0,
@@ -64,18 +63,18 @@ class Account extends StatelessWidget {
                                 style: TextStyle(
                                     color: Colors.black,
                                     fontSize: 22,
-                                    fontFamily: 'PermanentMarker'),
+                                    fontFamily: 'Anton'),
                               ),
                               Row(children: <Widget>[
                                 Icon(Icons.account_circle,color: Colors.grey.shade700,),
                                 Text("  Full Name: ",
                                     style: TextStyle(
-                                      fontFamily: 'PermanentMarker',
+                                      fontFamily: 'Anton',
                                     )
                                 ),
                                 Text(snapshot.data["Name"],
                                     style: TextStyle(
-                                        fontFamily: 'PermanentMarker',
+                                        fontFamily: 'Anton',
                                         color: Colors.grey.shade700
                                     )
                                 )
@@ -84,12 +83,12 @@ class Account extends StatelessWidget {
                                 Icon(Icons.email,color: Colors.grey.shade700,),
                                 Text("  Email: " ,
                                     style: TextStyle(
-                                      fontFamily: 'PermanentMarker',
+                                      fontFamily: 'Anton',
                                     )
                                 ),
                                 Text(snapshot.data["Email"],
                                     style: TextStyle(
-                                        fontFamily: 'PermanentMarker',
+                                        fontFamily: 'Anton',
                                         color: Colors.grey.shade700
                                     )
                                 )
@@ -122,18 +121,18 @@ class Account extends StatelessWidget {
                                 style: TextStyle(
                                     color: Colors.black,
                                     fontSize: 22,
-                                    fontFamily: 'PermanentMarker'),
+                                    fontFamily: 'Anton'),
                               ),
 
                               Row(children: <Widget>[
                                 Icon(Icons.airplanemode_active,color: Colors.grey.shade700,),
                                 Text("  Upcoming Flights:  ",
                                     style: TextStyle(
-                                      fontFamily: 'PermanentMarker',
+                                      fontFamily: 'Anton',
                                     )),
                                 Text(snapshot1.data.documents.length.toString(),
                                     style: TextStyle(
-                                        fontFamily: 'PermanentMarker',
+                                        fontFamily: 'Anton',
                                         color: Colors.grey.shade700
                                     )
                                 )
@@ -145,11 +144,11 @@ class Account extends StatelessWidget {
                                     Icon(Icons.airplanemode_inactive,color: Colors.grey.shade700,),
                                     Text("  Flights Cancelled: ",
                                         style: TextStyle(
-                                          fontFamily: 'PermanentMarker',
+                                          fontFamily: 'Anton',
                                         )),
                                     Text(snapshot1.data.documents.length.toString(),
                                         style: TextStyle(
-                                            fontFamily: 'PermanentMarker',
+                                            fontFamily: 'Anton',
                                             color: Colors.grey.shade700
                                         )
                                     )
@@ -191,7 +190,7 @@ class Account extends StatelessWidget {
                                         Icon(Icons.headset,color: Colors.grey.shade700,),
                                         Text("  Contact us",
                                             style: TextStyle(
-                                              fontFamily: 'PermanentMarker',
+                                              fontFamily: 'Anton',
                                             ))
                                       ]
                                   ),
@@ -232,7 +231,7 @@ class Account extends StatelessWidget {
                                         Icon(Icons.description,color: Colors.grey.shade700,),
                                         Text("  Terms And Conditions",
                                             style: TextStyle(
-                                              fontFamily: 'PermanentMarker',
+                                              fontFamily: 'Anton',
                                             ))
                                       ]
                                   ),
@@ -272,7 +271,7 @@ class Account extends StatelessWidget {
                                         Icon(Icons.lock,color: Colors.grey.shade700,),
                                         Text("  Privacy Policy",
                                             style: TextStyle(
-                                              fontFamily: 'PermanentMarker',
+                                              fontFamily: 'Anton',
                                             ))
                                       ]
                                   ),
@@ -319,14 +318,14 @@ class Account extends StatelessWidget {
                         style: TextStyle(
                             fontSize: 17,
                             color: Colors.black,
-                            fontFamily: 'PermanentMarker')),
+                            fontFamily: 'Anton')),
                   ),
                   new Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
                       Text("FLYIO",
                           style: TextStyle(
-                              fontFamily: 'PermanentMarker', fontSize: 28))
+                              fontFamily: 'Anton', fontSize: 28))
                     ],
                   ),
                   new Row(

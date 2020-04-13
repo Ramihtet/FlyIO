@@ -38,7 +38,7 @@ class SecondScreen extends StatelessWidget{
 
 //                      alignment: Alignment.center,
                       decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(22),
+                          borderRadius: BorderRadius.circular(25),
 //                        color: Colors.blue[600],
                       ),
                       child: Container(
@@ -66,7 +66,7 @@ class SecondScreen extends StatelessWidget{
                               Container(
 
                                 width: 390,
-                                height: 250,
+                                height: 330,
                                 decoration:
 
                                 BoxDecoration(
@@ -107,7 +107,7 @@ class SecondScreen extends StatelessWidget{
                                                             style: TextStyle(
                                                               color: Colors.blue[800],
                                                               fontSize: 16,
-                                                              fontFamily: "PermanentMarker",
+                                                              fontFamily: "Anton",
                                                             ),
                                                           ),
                                                         ],
@@ -122,7 +122,7 @@ class SecondScreen extends StatelessWidget{
                                                             style: TextStyle(
                                                               color: Colors.blue[800],
                                                               fontSize: 16,
-                                                              fontFamily: "PermanentMarker",
+                                                              fontFamily: "Anton",
                                                             ),
                                                           ),
                                                         ],
@@ -138,7 +138,7 @@ class SecondScreen extends StatelessWidget{
                                                             style: TextStyle(
                                                               color: Colors.blue[800],
                                                               fontSize: 16,
-                                                              fontFamily: "PermanentMarker",
+                                                              fontFamily: "Anton",
                                                             ),
                                                           ),
                                                         ],
@@ -172,7 +172,7 @@ class SecondScreen extends StatelessWidget{
                                               style: TextStyle(
                                                 color: Colors.blue[800],
                                                 fontSize: 23,
-                                                fontFamily: "PermanentMarker",
+                                                fontFamily: "Anton",
                                               )
                                             ),
                                             SizedBox(width: 10,),
@@ -218,7 +218,7 @@ class SecondScreen extends StatelessWidget{
                                                 style: TextStyle(
                                                   color: Colors.blue[800],
                                                   fontSize: 20,
-                                                  fontFamily: "PermanentMarker",
+                                                  fontFamily: "Anton",
                                                 )
                                             ),
 
@@ -309,7 +309,7 @@ class SecondScreen extends StatelessWidget{
 
                             fontSize: 20,
                           color: Colors.white70,
-                          fontFamily: "PermanentMarker",
+                          fontFamily: "Anton",
                         )
                     ),
                     color: Colors.blue[300],

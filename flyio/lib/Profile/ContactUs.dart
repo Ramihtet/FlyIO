@@ -14,7 +14,7 @@ class ContactUs extends StatelessWidget {
             title: Text(
               "Contact Us",
               style: TextStyle(
-                  fontFamily: 'PermanentMarker', color: Colors.white70),
+                  fontFamily: 'Anton', color: Colors.white70),
             ),
             backgroundColor: Colors.blueAccent,
             centerTitle: true,
@@ -32,7 +32,7 @@ class ContactUs extends StatelessWidget {
                       labelText: "Subject",
                       contentPadding:
                           const EdgeInsets.symmetric(vertical: 10.0)),
-                  style: TextStyle(fontFamily: 'PermanentMarker'),
+                  style: TextStyle(fontFamily: 'Anton'),
 
               ),
             ),
@@ -42,7 +42,7 @@ class ContactUs extends StatelessWidget {
                 child: TextFormField(
                   controller: messegeToBeSentCon,
                   scrollPadding: const EdgeInsets.symmetric(vertical: 125.0),
-                  style: TextStyle(fontFamily: 'PermanentMarker'),
+                  style: TextStyle(fontFamily: 'Anton'),
                   maxLines: null,
                     decoration: InputDecoration(
                         labelText: "Enter Your Message here",
@@ -53,7 +53,7 @@ class ContactUs extends StatelessWidget {
             RaisedButton(
               child: Text(
                 "Submit",
-                style: TextStyle(fontFamily: 'PermanentMarker',color: Colors.black),
+                style: TextStyle(fontFamily: 'Anton',color: Colors.black),
               ),
               color: Colors.white,
               onPressed: () => [
@@ -65,7 +65,7 @@ class ContactUs extends StatelessWidget {
               children: <Widget>[
                 Text("FLYIO",
                     style:
-                        TextStyle(fontFamily: 'PermanentMarker', fontSize: 28))
+                        TextStyle(fontFamily: 'Anton', fontSize: 28))
               ],
             ),
             new Row(

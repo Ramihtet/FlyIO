@@ -1,22 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flyio/Profile//bar.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:flyio/main.dart';
 
-class ConfirmationPage extends StatelessWidget {
+class Reseter extends StatelessWidget {
   @override
+  final CodeCon = TextEditingController();
+
   Widget build(BuildContext context) {
     return new Scaffold(
-        appBar: AppBar(
-            title: Text(
-              "Confirmation",
-              style: TextStyle(
-                  fontFamily: 'Anton', color: Colors.white70),
-            ),
-            backgroundColor: Colors.blueAccent,
-            centerTitle: true,
-            leading: new IconButton(
-              icon: new Icon(Icons.arrow_back, color: Colors.white70),
-              onPressed: () => Navigator.of(context).pop(),
-            )),
+
         body: Stack(children: <Widget>[
           new Bar(height: 210.0),
           ListView(children: <Widget>[
@@ -33,12 +27,37 @@ class ConfirmationPage extends StatelessWidget {
               child: Card(
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(12)),
-                color: Colors.white70,
-                child: Text(
-                  "Your message was sent.\n\n"
-                  "Please be patient and we will get back to you ASAP.\n\n"
-                  "FlyIO Team",
-                  style: TextStyle(fontFamily: 'Anton', fontSize: 25),
+                color: Colors.white,
+                child: Column(
+                  children: <Widget>[
+                    Text(
+                      "Enter You new Password : ",
+                      style: TextStyle(fontFamily: 'Anton', fontSize: 20),
+                    ),
+                    SizedBox(height: 20,),
+
+                    TextFormField(
+                      controller:CodeCon ,
+                      obscureText: true,
+                      decoration: InputDecoration(
+                          labelText: "Enter Code", hasFloatingPlaceholder: true),
+                    ),
+                    SizedBox(height: 100,),
+                    RaisedButton(
+                        child: Text("Reset"),
+                        color: Colors.blueAccent,
+                        onPressed: (){
+                          Firestore.instance.collection("Users").document(Email_Change).updateData(
+                              {
+                                "Password":CodeCon.text,
+                              });
+                          Navigator.push(context,
+                              MaterialPageRoute(
+                                  builder: (context) => LoginPage())
+                          );
+
+                        })
+                  ],
                 ),
               ),
             ),
@@ -47,7 +66,7 @@ class ConfirmationPage extends StatelessWidget {
               children: <Widget>[
                 Text("FLYIO",
                     style:
-                        TextStyle(fontFamily: 'Anton', fontSize: 28))
+                    TextStyle(fontFamily: 'Anton', fontSize: 28))
               ],
             ),
             new Row(

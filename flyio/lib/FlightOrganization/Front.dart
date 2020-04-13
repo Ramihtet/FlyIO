@@ -7,7 +7,7 @@ import 'package:rflutter_alert/rflutter_alert.dart';
 import 'package:flyio/Payment/bloc/add_credit_card_bloc.dart';
 import 'package:flyio/Payment/bloc/bloc.dart';
 import 'package:flyio/FlightSearchpage/HomePage.dart';
-import 'package:flyio/Login/two.dart';
+import 'package:flyio/main.dart';
 import 'package:flutter/material.dart';
 import 'package:flyio/List/Page.dart';
 import 'package:flyio/FlightOrganization/Front.dart';
@@ -115,7 +115,7 @@ class _HomePageState extends State<HomePage1> with SingleTickerProviderStateMixi
         title: new Text(
           "Trips",
           style: TextStyle(
-            fontFamily: "PermanentMarker",
+            fontFamily: "Anton",
           ),
           textAlign: TextAlign.center,
         ),
@@ -128,14 +128,14 @@ class _HomePageState extends State<HomePage1> with SingleTickerProviderStateMixi
                 icon: new Icon(Icons.airplanemode_active),
                 child: Text("UPCOMING",
                   style: TextStyle(
-                    fontFamily: 'PermanentMarker',
+                    fontFamily: 'Anton',
                   ),)
             ),
             new Tab(
               icon: new Icon(Icons.airplanemode_inactive),
                 child: Text("Cancelled",
                   style: TextStyle(
-                    fontFamily: 'PermanentMarker',
+                    fontFamily: 'Anton',
                   ),)
             ),
 //            new Tab(

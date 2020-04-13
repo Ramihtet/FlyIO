@@ -49,7 +49,7 @@ class _SwipeFeedPageState extends State<SwipeFeedPage> {
               Text(
                 "Popular Destinations ",
                 style: TextStyle(
-                  fontFamily: 'PermanentMarker',
+                  fontFamily: 'Anton',
                   fontSize: 22,
                   color: Colors.lightBlue,
                   fontWeight: FontWeight.bold,

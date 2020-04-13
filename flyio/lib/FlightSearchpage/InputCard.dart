@@ -20,6 +20,7 @@ class ContentCard extends StatefulWidget {
 final wheretocon = new TextEditingController();
 final wherefromcon = new TextEditingController();
 final passcon = new TextEditingController();
+
 DateTime _dateTime1;
 DateTime _dateTime2;
 var httpp;
@@ -86,6 +87,9 @@ class _ContentCardState extends State<ContentCard> {
   void initState() {
     super.initState();
     loadIata();
+    setState(() {
+      passcon.text ="1";
+    });
 //    print(tt);
 
 //    print(jsonCrossword);
@@ -174,7 +178,7 @@ class _ContentCardState extends State<ContentCard> {
         Row(
         mainAxisAlignment: MainAxisAlignment.start,
         children: <Widget>[
-          SizedBox(width: 320,),
+          SizedBox(width: 280,),
 
 
           FutureBuilder<Token>(
@@ -183,12 +187,14 @@ class _ContentCardState extends State<ContentCard> {
                       return FloatingActionButton(
                         onPressed: () {
                           setState(() {
-
                             whereto = wheretocon.text;
                             wherefrom = wherefromcon.text;
                             loadIata();
-                            wherefromfinal = showIata(wherefrom);
-                            wheretofinal = showIata(whereto);
+                            print(wheretocon.text.length);
+                            print(wheretocon.text);
+                            if (wherefromcon.text.length == 3){wherefromfinal =wherefrom;}else{wherefromfinal = showIata(wherefrom);}
+                            if (wheretocon.text.length == 3){wheretofinal = whereto;}else{wheretofinal = showIata(whereto);}
+
                             pass = passcon.text;
 //                            print(datedep);
                             if(trip){httpp = printing_round(wheretofinal, wherefromfinal, pass, datedep,datearr);}

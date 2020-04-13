@@ -4,45 +4,49 @@ import 'package:flyio/FlightOrganization/Front.dart';
 import 'package:flyio/FlightSearchpage/HomePage.dart';
 import 'package:flyio/HomePage2/HomePage/page.dart';
 import 'package:flutter/rendering.dart';
+import 'package:flyio/Messager/messager_page.dart';
 import 'dart:ui' as ui;
 import 'package:firebase_messaging/firebase_messaging.dart';
 
 
-void main(){
-
-  RenderErrorBox.backgroundColor = Colors.transparent;
-  RenderErrorBox.textStyle = ui.TextStyle(color: Colors.transparent);
-  runApp(App());
-}
-
-class App extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Home(),
-    );
-  }
-}
+//void main(){
+//
+//  RenderErrorBox.backgroundColor = Colors.transparent;
+//  RenderErrorBox.textStyle = ui.TextStyle(color: Colors.transparent);
+//  runApp(App());
+//}
+//
+//class App extends StatelessWidget {
+//  @override
+//  Widget build(BuildContext context) {
+//    return MaterialApp(
+//      home: Home(),
+//    );
+//  }
+//}
 
 class Home extends StatefulWidget {
 
   @override
   State<StatefulWidget> createState() {
+    RenderErrorBox.backgroundColor = Colors.transparent;
+  RenderErrorBox.textStyle = ui.TextStyle(color: Colors.transparent);
     return _HomeState();
+
   }
 
 }
 
 class _HomeState extends State<Home> {
   int _currentIndex = 0;
-  final List<Widget> _children = [Page(), HomePage(), StartPage(), Account()];
+  final List<Widget> _children = [Page(), HomePage(), HomePage1(),Messager(), Account()];
   final FirebaseMessaging _firebaseMessaging = FirebaseMessaging();
   @override
   void initState(){
     super.initState();
     _firebaseMessaging.onTokenRefresh.listen(sendTokenToServer);
     _firebaseMessaging.getToken().then((token) {
-      print(token);
+//      print(token);
     });
 
   }
@@ -89,6 +93,16 @@ class _HomeState extends State<Home> {
           ),
           new BottomNavigationBarItem(
               icon: Icon(
+                Icons.message,
+                color: Colors.black,
+                size: 30,
+              ),
+              title: Text(
+                'Messeges',
+                style: TextStyle(color: Colors.black),
+              )),
+          new BottomNavigationBarItem(
+              icon: Icon(
                 Icons.account_circle,
                 color: Colors.black,
                 size: 30,
@@ -112,5 +126,5 @@ class _HomeState extends State<Home> {
 
 void sendTokenToServer(String fcmToken){
   print(fcmToken);
-  print("e");
+//  print("e");
 }

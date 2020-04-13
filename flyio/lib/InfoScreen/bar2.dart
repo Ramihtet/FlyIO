@@ -38,7 +38,7 @@ class Bar extends StatelessWidget {
           title: new Text(
             "FlyIo",
             style: TextStyle(
-              fontFamily: 'PermanentMarker',
+              fontFamily: 'Anton',
               fontSize: 30,
               color: Colors.white70,
               fontWeight: FontWeight.bold,

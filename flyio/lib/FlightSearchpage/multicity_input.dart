@@ -86,6 +86,7 @@ class _FlightInputState extends State<FlightInput> {
             Padding(
               padding: const EdgeInsets.fromLTRB(0.0, 0.0, 64.0, 8.0),
               child: TextFormField(
+
                 onChanged: (String value){},
                 controller: passcon,
                 decoration: InputDecoration(

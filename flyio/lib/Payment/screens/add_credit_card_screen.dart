@@ -5,8 +5,11 @@ import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 // Packages
 import 'package:flutter_masked_text/flutter_masked_text.dart';
+import 'package:flyio/FlightSearchpage/Token.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:credit_card_type_detector/credit_card_type_detector.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
 
 // Local imports
 import 'package:flyio/Payment/bloc/add_credit_card_bloc.dart';
@@ -17,8 +20,8 @@ import 'package:flyio/List/Page.dart';
 import 'package:flyio/FlightOrganization/Front.dart';
 import 'package:flyio/FlightSearchpage/InputCard.dart';
 import 'package:flyio/Payment/CreditCardPage.dart';
-import 'package:flyio/Login/two.dart';
 import 'package:flyio/main.dart';
+import 'package:flyio/Snack_Bar.dart';
 
 
 class AddCreditCardScreen extends StatelessWidget {
@@ -33,7 +36,19 @@ class AddCreditCardScreen extends StatelessWidget {
   final MaskedTextController _ccNumMask =
   MaskedTextController(mask: "0000 0000 0000 0000");
   final MaskedTextController _expMask = MaskedTextController(mask: "00/00");
+  Future<http.Response> SendRequest() {
+    return http.post(
+      'https://flyio-api.herokuapp.com/',
+//      headers: <String, String>{
+//        'Content-Type': 'application/json; charset=UTF-8',
+//      },
+      body: jsonEncode(<String, String>{
+        'title': "Hello",
+      }
 
+      ),
+    );
+  }
   Widget _creditCardWidget() {
     Size deviceSize = MediaQuery.of(_context).size;
     double ccIconSize = 50.0;
@@ -441,6 +456,10 @@ class AddCreditCardScreen extends StatelessWidget {
                         color: Color(0xff4CD964),
                         elevation: 0.0,
                         onPressed: () {
+                          SendRequest().then((erg) => print(erg));
+
+
+
 //            => _saveCard
 //                        if(Firestore.instance.collection("Flights").document(Emailcon.text)
 //                            .collection("Upcoming").document("Blank") == null){
@@ -460,6 +479,7 @@ class AddCreditCardScreen extends StatelessWidget {
                                 "From":wherefrom,
                                 "To":whereto,
                                 "Departure_Date":datedep,
+                                "Token":Messager_Token,
                               }
 
 

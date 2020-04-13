@@ -2,17 +2,17 @@ import 'package:flyio/main.dart';
 import 'package:mailer/mailer.dart';
 import 'package:mailer/smtp_server.dart';
 
-sendthemessage(String subject1, String messageToBeSent) async {
+sendthemessage(String Email) async {
   String username = 'testmailsender1212@gmail.com';
   String password = 'cmps253sender';
 
   final smtpServer = gmail(username, password);
-
+  print("Sending Messege");
   final message = Message()
-    ..from = Address(username, "FLY.IO Bug")
-    ..recipients.add('ramihoteit321@hotmail.com')
-    ..subject = subject1.toString()
-    ..text = (messageToBeSent.toString() +  "\n This messege was not from the user with the following email: "+Emailcon.text);
+    ..from = Address(username, "FLY.IO")
+    ..recipients.add(Email)
+    ..subject = "Password Reset"
+    ..text = Code.toString();
 
   try {
     final sendReport = await send(message, smtpServer);
