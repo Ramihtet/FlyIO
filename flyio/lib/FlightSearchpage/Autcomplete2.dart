@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flyio/List/Getairlinename.dart';
+import 'package:flyio/airports-IATA.dart';
 import 'package:http/http.dart' as http;
 import 'package:flyio/FlightSearchpage/LoadingScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:flyio/FlightSearchpage/InputCard.dart';
 import 'package:flyio/FlightSearchpage/Autocomplete.dart';
+import 'package:flyio/onlyairports.dart';
 
 import 'dart:convert';
 import 'package:autocomplete_textfield/autocomplete_textfield.dart';
@@ -54,7 +57,7 @@ class Airline {
 //  Widget build(BuildContext context) {
 //    return MaterialApp(
 //      title: 'Flutter Demo',
-//      home: Autocomlete2(
+//      home: MyHomePage(
 //          title: 'Search for flights page'
 //
 //      ),
@@ -66,7 +69,7 @@ class Autocomlete2 extends StatefulWidget {
   Autocomlete2({Key key, this.title}) : super(key: key);
   final String title;
   @override
-  AutoCompleteDemoState createState() => AutoCompleteDemoState();
+  _AutoCompleteDemoState createState() => _AutoCompleteDemoState();
 }
 
 //
@@ -77,56 +80,58 @@ class Autocomlete2 extends StatefulWidget {
 //  _AutoCompleteDemoState createState() => _AutoCompleteDemoState();
 //}
 
-class AutoCompleteDemoState extends State<Autocomlete2> {
-  AutoCompleteTextField searchTextField;
-  GlobalKey<AutoCompleteTextFieldState<Airline>> key = new GlobalKey();
-  static List<Airline> users = new List<Airline>();
-  bool loading = true;
-
-  void getAirlines() async {
-    try {
-      final response =
-      await http.get("https://raw.githubusercontent.com/Ramihtet/airlines/master/working.json");
-      if (response.statusCode == 200) {
-        users = loadAirlines(response.body);
-//        print(users);
-        print('Airlines: ${users.length}');
-        setState(() {
-          loading = false;
-        });
-      } else {
-        print("Error getting users.");
-      }
-    } catch (e) {
-      print("Error getting users.");
-    }
-  }
-
-  static List<Airline> loadAirlines(String jsonString) {
-    final parsed = json.decode(jsonString).cast<Map<String, dynamic>>();
-    return parsed.map<Airline>((json) => Airline.fromJson(json)).toList();
-  }
+class _AutoCompleteDemoState extends State<Autocomlete2> {
+  AutoCompleteTextField airports;
+  GlobalKey<AutoCompleteTextFieldState<String>> key = new GlobalKey();
+//  static List<Airline> users = new List<Airline>();
+//  bool loading = true;
+//
+//  void getAirlines() async {
+//    try {
+//      final response =
+//      await http.get("https://raw.githubusercontent.com/Ramihtet/airlines/master/working.json");
+//      if (response.statusCode == 200) {
+//        users = loadAirlines(response.body);
+////        print(users);
+//        print('Airlines: ${users.length}');
+//        setState(() {
+//          loading = false;
+//        });
+//      } else {
+//        print("Error getting users.");
+//      }
+//    } catch (e) {
+//      print("Error getting users.");
+//    }
+//  }
+//
+//  static List<Airline> loadAirlines(String jsonString) {
+//    final parsed = json.decode(jsonString).cast<Map<String, dynamic>>();
+//    return parsed.map<Airline>((json) => Airline.fromJson(json)).toList();
+//  }
 
   @override
   void initState() {
-    getAirlines();
+//    getAirlines();
     super.initState();
   }
 
-  Widget row(Airline user) {
+  Widget row(String user) {
     return Wrap(
 //      mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: <Widget>[
         Text(
-          user.name,
+          user,
+          softWrap: true,
+          overflow: TextOverflow.fade,
           style: TextStyle(fontSize: 16.0),
         ),
-//        SizedBox(
-//          width: 1.0,
-//        ),
-//        Text(
-//          user.iata,
-//        ),
+        Text(
+          "("+airportstoiata[user]['IATA']+")",
+          softWrap: true,
+          overflow: TextOverflow.fade,
+          style: TextStyle(fontSize: 16.0),
+        ),
       ],
     );
   }
@@ -144,36 +149,36 @@ class AutoCompleteDemoState extends State<Autocomlete2> {
       Padding(
         padding: const EdgeInsets.fromLTRB(0,0,0,0),
         child:
-        loading
-        ? CircularProgressIndicator()
-        :
-        searchTextField = AutoCompleteTextField<Airline>(
+//            loading
+//                ? CircularProgressIndicator()
+//                :
+        airports = AutoCompleteTextField<String>(
           key: key,
           clearOnSubmit: false,
-          suggestions: users,
+          suggestions: OnlyAirports,
           suggestionsAmount: 4,
           controller: wheretocon,
           style: TextStyle(color: Colors.black, fontSize: 16.0),
           decoration: InputDecoration(
             icon: Icon(Icons.flight_land, color: Colors.blueAccent),
-//            contentPadding: const EdgeInsets.fromLTRB(10.0, 30.0, 10.0, 20.0),
+//                contentPadding: const EdgeInsets.fromLTRB(10.0, 30.0, 10.0, 20.0),
             labelText: "To",
-//            hintStyle: TextStyle(color: Colors.black),
+//                hintStyle: TextStyle(color: Colors.black),
           ),
           itemFilter: (item, query) {
 //              print(query);
 //              print(" ${item.name.toLowerCase().startsWith(query.toLowerCase())} is user : ${item.name} " );
-            return item.name
+            return item
                 .toLowerCase()
                 .startsWith(query.toLowerCase());
           },
           itemSorter: (a, b) {
-            return a.name.compareTo(b.name);
+            return a.compareTo(b);
           },
           itemSubmitted: (item) {
 //              print(item.name);
             setState(() {
-              searchTextField.textField.controller.text = item.name;
+              airports.textField.controller.text = item;
 //                print(searchTextField.textField.controller.text);
             });
           },

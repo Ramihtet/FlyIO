@@ -3,6 +3,7 @@ import 'dart:convert';
 //import 'dart:html';
 import 'dart:io';
 import 'package:flutter/material.dart';
+import 'package:flyio/FlightSearchpage/Buttons.dart';
 import 'package:flyio/FlightSearchpage/HomePage.dart';
 import 'package:flyio/main.dart';
 
@@ -15,6 +16,7 @@ import 'package:flyio/List/FetchInfo.dart';
 import 'package:flyio/List/Getairlineclasses.dart' as g;
 import 'package:flyio/List/Getairlinename.dart';
 import 'package:flyio/List/classes.dart';
+import 'package:flyio/Flight_stops/stop_page.dart';
 import 'package:flyio/Globals.dart';
 import 'package:flyio/List/sorted_by_price.dart';
 import 'package:flutter/rendering.dart';
@@ -30,7 +32,11 @@ String durationC;
 String companyC;
 String flightnumberC;
 String iatacode;
+List<Segment> stops_dep ;
+List<Segment> stop_arr;
 var CurrentList = list_of_flight;
+var hello = fetchInfo2(httpp);
+
 
 class Api4 extends StatelessWidget {
   // This widget is the root of your application.
@@ -57,9 +63,17 @@ class Api extends StatefulWidget {
 }
 
 class _Api extends State<Api> {
+  Map a = {"meta":{"count":1}};
   @override
   void initState() {
+
     super.initState();
+    fetchInfo2(httpp).then((value){
+      setState(() {
+        a = value;
+        print(a);
+      });
+    });
     RenderErrorBox.backgroundColor = Colors.transparent;
     RenderErrorBox.textStyle = ui.TextStyle(color: Colors.transparent);
 
@@ -111,118 +125,144 @@ class _Api extends State<Api> {
   Widget Screen(mySortingObject list_of_flights) {
     return FutureBuilder<Info>(
         future: futureInfo,
-        builder: (context, snapshot) {
+        builder: (context, snapshot)
+    {
 //                      print(snapshot.data);
-          if (snapshot.data == null) {
-            return CircularProgressIndicator();
-          } else {
-            return new ListView.builder(
-                          addAutomaticKeepAlives: true,
-                        cacheExtent: 1000,
-              itemBuilder: (context, index) {
-                return FutureBuilder<g.Airline>(
-                  future: Getname(getairlinehttp(list_of_flights
-                      .data_list[index]
-                      .itineraries[0]
-                      .segments[0]
-                      .carrierCode)),
-                  builder: (context, snapshot1) {
-                    return GestureDetector(
-                      onTap: () {
-                        setState(() {
-                          priceC = list_of_flights.data_list[index].price.total;
-                          durationC = list_of_flights
-                              .data_list[index].itineraries[0].duration;
-                          companyC = list_of_flights.data_list[index]
-                              .itineraries[0].segments[0].carrierCode;
 
-                          flightnumberC = list_of_flights.data_list[index]
-                              .itineraries[0].segments[0].carrierCode +
-                              " " +
-                              list_of_flights.data_list[index].itineraries[0]
-                                  .segments[0].number;
-                          iatacode = snapshot1.data.data[0].iataCode;
-                        });
-                        Navigator.pushReplacement(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => SecondScreen()));
-                      },
-                      child: new Card(
-                        child: Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Row(
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: <Widget>[
-                              Container(
-                                width: 160,
-                                height: 100,
-//                                        color: Colors.blueAccent,
-                                child: Padding(
-                                  padding: const EdgeInsets.all(8.0),
-                                  child: Image.network(
-                                    'https://daisycon.io/images/airline/?width=300&height=150&color=ffffff&iata=' +
-                                        snapshot1.data.data[0].iataCode,
-                                  ),
-                                ),
-                              ),
-                              Expanded(
-                                child: Container(
-                                  padding: const EdgeInsets.all(8.0),
-//                                          color: Colors.blueAccent,
-                                  child: Column(
-                                    children: <Widget>[
-                                      Text(
-                                        list_of_flights
-                                            .data_list[index].price.total,
-                                        style: TextStyle(
-                                            fontSize: 14,
-                                            fontWeight: FontWeight.bold),
-                                      ),
-                                      Text(
-                                        (list_of_flights.data_list[index]
-                                            .itineraries[0].duration)
-                                            .replaceAll(RegExp('P'), '')
-                                            .replaceAll(RegExp('T'), '')
-                                            .replaceAll(RegExp('H'), ' hours ')
-                                            .replaceAll(
-                                            RegExp('M'), ' minutes'),
-                                        style: TextStyle(
-                                            color: Colors.blue.shade600),
-                                      ),
-                                      Text(
-                                        snapshot1.data.data[0].businessName,
-                                        style: TextStyle(
-                                            color: Colors.black,
-                                            fontSize: 12,
-                                            fontWeight: FontWeight.bold),
-                                      ),
-                                      Text(
-                                        list_of_flights
-                                            .data_list[index]
-                                            .travelerPricings[0]
-                                            .fareDetailsBySegment[0]
-                                            .cabin,
-                                        style: TextStyle(
-                                            color: Colors.grey.shade600),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                    );
-                  },
-                  //how many cards we want to display
-                );
-              },
-              itemCount: list_of_flights.data_list.length,
-//                  itemCount: 10,
+      if(a["meta"]["count"]==0){
+            return Container(
+              child: Text("There are no available flights"),
             );
           }
+      if (!snapshot.hasData) {
+        return CircularProgressIndicator();
+      }
+//      if(a["meta"]["count"]==0 && snapshot.hasData){
+//        return Container(
+//          child: Text("There are no available flights"),
+//        );
+//      }
+      else {
+
+//        else {
+          return new ListView.builder(
+            addAutomaticKeepAlives: true,
+            cacheExtent: 10000,
+            itemBuilder: (context, index) {
+              return FutureBuilder<g.Airline>(
+                future: Getname(getairlinehttp(list_of_flights
+                    .data_list[index]
+                    .itineraries[0]
+                    .segments[0]
+                    .carrierCode)),
+                builder: (context, snapshot1) {
+                  return GestureDetector(
+                    onTap: () {
+                      setState(() {
+                        stops_dep = list_of_flights.data_list[index]
+                            .itineraries[0].segments;
+
+                        if (trip) {
+                          stop_arr = list_of_flights.data_list[index]
+                              .itineraries[1].segments;
+                        }
+
+
+                        priceC = list_of_flights.data_list[index].price.total;
+                        durationC = list_of_flights
+                            .data_list[index].itineraries[0].duration;
+                        companyC = list_of_flights.data_list[index]
+                            .itineraries[0].segments[0].carrierCode;
+
+                        flightnumberC = list_of_flights.data_list[index]
+                            .itineraries[0].segments[0].carrierCode +
+                            " " +
+                            list_of_flights.data_list[index].itineraries[0]
+                                .segments[0].number;
+                        iatacode = snapshot1.data.data[0].iataCode;
+                      });
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => Stops()));
+                    },
+                    child: new Card(
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Row(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: <Widget>[
+                            Container(
+                              width: 160,
+                              height: 100,
+//                                        color: Colors.blueAccent,
+                              child: Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Image.network(
+                                  'https://daisycon.io/images/airline/?width=300&height=150&color=ffffff&iata=' +
+                                      snapshot1.data.data[0].iataCode,
+                                ),
+                              ),
+                            ),
+                            Expanded(
+                              child: Container(
+                                padding: const EdgeInsets.all(8.0),
+//                                          color: Colors.blueAccent,
+                                child: Column(
+                                  children: <Widget>[
+                                    Text(
+                                      list_of_flights
+                                          .data_list[index].price.total,
+                                      style: TextStyle(
+                                          fontSize: 14,
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                    Text(
+                                      (list_of_flights.data_list[index]
+                                          .itineraries[0].duration)
+                                          .replaceAll(RegExp('P'), '')
+                                          .replaceAll(RegExp('T'), '')
+                                          .replaceAll(RegExp('H'), ' hours ')
+                                          .replaceAll(
+                                          RegExp('M'), ' minutes'),
+                                      style: TextStyle(
+                                          color: Colors.blue.shade600),
+                                    ),
+                                    Text(
+                                      snapshot1.data.data[0].businessName,
+                                      style: TextStyle(
+                                          color: Colors.black,
+                                          fontSize: 12,
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                    Text(
+                                      list_of_flights
+                                          .data_list[index]
+                                          .travelerPricings[0]
+                                          .fareDetailsBySegment[0]
+                                          .cabin,
+                                      style: TextStyle(
+                                          color: Colors.grey.shade600),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  );
+                },
+                //how many cards we want to display
+              );
+            },
+            itemCount: list_of_flights.data_list.length,
+//                  itemCount: 10,
+          );
+//        }
+
+    }
         });
   }
 

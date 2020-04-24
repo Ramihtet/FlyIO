@@ -63,6 +63,25 @@ Future<Info> fetchInfo(htt) async {
     throw Exception('Failed to load');
   }
 }
+Future<Map> fetchInfo2(htt) async {
+  String url = htt;
+//  print(url);
+  final response =
+  await http.get(
+      url,
+      headers: {
+        "Authorization" : "Bearer " + token
+      });
+  if (response.statusCode == 200) {
+    var parsedJson = json.decode(response.body);
+    return parsedJson;
+
+
+
+  } else {
+    throw Exception('Failed to load');
+  }
+}
 //void sortingDur(mySortingObject dataa){
 //
 //  dataa.data_list.sort((a, b) => a.itineraries[0].duration.compareTo(b.itineraries[0].duration));

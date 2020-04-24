@@ -6,6 +6,8 @@ import 'package:flyio/Password_reset/PassWord_reset.dart';
 import 'dart:math';
 import 'package:flyio/Password_reset/Sendmail_reset.dart';
 import 'package:flyio/AgencyApp.dart';
+import 'package:flyio/Guest_snackbar.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 
 
@@ -24,6 +26,8 @@ class MyApp extends StatelessWidget {
 }
 bool Agency_bool = false;
 bool isAgency = false;
+bool Guestbool = false;
+bool rmmbr = false;
 final Emailcon = TextEditingController();
 final PasswordCon = TextEditingController();
 final NameCon = TextEditingController();
@@ -40,6 +44,7 @@ class _LoginPageState extends State<LoginPage> {
   // To adjust the layout according to the screen size
   // so that our layout remains responsive ,we need to
   // calculate the screen height
+
   double screenHeight;
   final FirebaseMessaging _firebaseMessaging = FirebaseMessaging();
 
@@ -144,6 +149,7 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
                       StreamBuilder(
                           stream: Firestore.instance.collection("Users").snapshots(),
@@ -172,66 +178,87 @@ class _LoginPageState extends State<LoginPage> {
                           );
                         }
                       ),
-                      Expanded(
-                        child: Container(),
-                      ),
-                      StreamBuilder(
-                          stream: Firestore.instance.collection("Users").snapshots(),
-                          builder: (context,snapshot){
-                          return FlatButton(
-                            child: Text("Login"),
-                            color: Color(0xFF4B9DFE),
-                            textColor: Colors.white,
-                            padding: EdgeInsets.only(
-                                left: 38, right: 38, top: 15, bottom: 15),
-                            shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(5)),
-                            onPressed: () {
-                              setState(() {
-                                collection = Firestore.instance.collection("Users").snapshots();
-                              });
-                              for (var i=0; i<snapshot.data.documents.length +1; i++) {
-                                if (snapshot.data.documents[i]["Email"] == Emailcon.text && snapshot.data.documents[i]["Password"] == PasswordCon.text){
-                                  path = snapshot.data.documents[i].documentID;
-                                  print(path);
-                                  _firebaseMessaging.onTokenRefresh.listen(null);
-                                    _firebaseMessaging.getToken().then((token) {
-                                      Firestore.instance.collection("Users").document(path).updateData(
-                                    {
-                                      "Token":token,
-                                    });
-                                      Messager_Token =token;
+
+                      Column(
+                        children: <Widget>[
+                          StreamBuilder(
+                              stream: Firestore.instance.collection("Users").snapshots(),
+                              builder: (context,snapshot){
+                              return FlatButton(
+                                child: Text("Login"),
+                                color: Color(0xFF4B9DFE),
+                                textColor: Colors.white,
+                                padding: EdgeInsets.only(
+                                    left: 38, right: 38, top: 15, bottom: 15),
+                                shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(5)),
+                                onPressed: () {
+                                  setState(() {
+                                    Guestbool = false;
+                                    collection = Firestore.instance.collection("Users").snapshots();
+                                  });
+
+                                  for (var i=0; i<snapshot.data.documents.length +1; i++) {
+
+                                    if ((snapshot.data.documents[i]["Email"] == Emailcon.text && snapshot.data.documents[i]["Password"] == PasswordCon.text)){
+                                      path = snapshot.data.documents[i].documentID;
+                                      print(path);
+                                      _firebaseMessaging.onTokenRefresh.listen(null);
+                                        _firebaseMessaging.getToken().then((token) {
+                                          Firestore.instance.collection("Users").document(path).updateData(
+                                        {
+                                          "Token":token,
+                                        });
+                                          Messager_Token =token;
+
+                                        }
+
+
+                                        );
+                                        if (snapshot.data.documents[i]["Agency"]){
+                                          isAgency = true;
+                                          Navigator.pushReplacement(context,
+                                            MaterialPageRoute(
+                                                builder: (context) => Agency())
+                                        );}
+                                        else{
+                                          isAgency = false;
+                                          Navigator.pushReplacement(context,
+                                              MaterialPageRoute(
+                                                  builder: (context) => Home())
+                                          );
+
+                                        }
+
 
                                     }
-
-
-                                    );
-                                    if (snapshot.data.documents[i]["Agency"]){
-                                      isAgency = true;
-                                      Navigator.pushReplacement(context,
-                                        MaterialPageRoute(
-                                            builder: (context) => Agency())
-                                    );}
                                     else{
-                                      isAgency = false;
-                                      Navigator.pushReplacement(context,
-                                          MaterialPageRoute(
-                                              builder: (context) => Home())
-                                      );
 
                                     }
 
 
-                                }
-                                else{
-
-                                }
-
-
-                              };
-                              },
-                          );
-                        }
+                                  };
+                                  },
+                              );
+                            }
+                          ),
+//                          Container(
+//                            child: Row(
+//                              children: <Widget>[
+////                                Text("Remember Me"),
+////                                Checkbox(value: rmmbr,
+////                                    onChanged:(bool value){
+////                                  print(rmmbr);
+////                                  _save(Emailcon.text, PasswordCon.text);
+////                                  setState(() {
+////                                      rmmbr = value;
+////                                    });
+////                                }
+////                                ),
+//                              ],
+//                            ),
+//                          ),
+                        ],
                       )
                     ],
                   )
@@ -241,24 +268,43 @@ class _LoginPageState extends State<LoginPage> {
           ),
         ),
         Row(
-          crossAxisAlignment: CrossAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             SizedBox(
               height: 40,
             ),
-            Text(
-              "Don't have an account ?",
-              style: TextStyle(color: Colors.grey),
+            Padding(
+              padding: const EdgeInsets.fromLTRB(0,17,0,0),
+              child: Text(
+                "Don't have an account ?",
+                style: TextStyle(color: Colors.grey),
+              ),
             ),
-            FlatButton(
-              onPressed: () {
-                setState(() {
-                  _authMode = AuthMode.SINGUP;
-                });
-              },
-              textColor: Colors.black87,
-              child: Text("Create Account"),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                FlatButton(
+                  onPressed: () {
+                    setState(() {
+                      _authMode = AuthMode.SINGUP;
+                    });
+                  },
+                  textColor: Colors.black87,
+                  child: Text("Create Account"),
+                ),
+                FlatButton(
+                  onPressed: () {
+                    Guestbool = true;
+                    Navigator.pushReplacement(context,
+                        MaterialPageRoute(
+                            builder: (context) => Guest())
+                    );
+                  },
+                  textColor: Colors.black87,
+                  child: Text("Continue As Guest"),
+                ),
+              ],
             )
           ],
         )

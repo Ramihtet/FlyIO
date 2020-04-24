@@ -164,13 +164,39 @@ class _HomePageState extends State<HomePage1> with SingleTickerProviderStateMixi
                         DocumentSnapshot ds = snapshot.data.documents[index];
                         return ListTile(
                           title: Row(
+
                             children: <Widget>[
                               Expanded(
                                   child:
                                   ds["Flight_Number"] == null ?
                                   Text(" ")
                                       :
-                                  Text(ds["Flight_Number"],)
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Card(
+                                        child: Column(
+                                          crossAxisAlignment: CrossAxisAlignment.start,
+                                          children: <Widget>[
+                                            Padding(
+                                              padding: const EdgeInsets.all(8.0),
+                                              child: Text("Flight Number: " +ds["Flight_Number"],),
+                                            ),
+                                            Padding(
+                                              padding: const EdgeInsets.all(8.0),
+                                              child: Text("Departure Date: " +ds["Departure_Date"],),
+                                            ),
+                                            Padding(
+                                              padding: const EdgeInsets.all(8.0),
+                                              child: Text("Destination: " +ds["To"],),
+                                            ),
+                                            Padding(
+                                              padding: const EdgeInsets.all(8.0),
+                                              child: Text("Duration: " +ds["Duration"].toString().replaceAll("H", " Hours ").replaceAll("M", " Minutes").replaceAll("PT", ""),),
+                                            ),
+                                          ],
+                                        )
+                                    ),
+                                  )
 
                               )
 
@@ -178,7 +204,46 @@ class _HomePageState extends State<HomePage1> with SingleTickerProviderStateMixi
                           ),
                           onTap: () {
 
-                            AlertButton(ds, context);
+                            showDialog(
+                              context: context,
+                              builder:(_) => CupertinoAlertDialog(
+                                title: Text("Cancel Flight"),
+                                content:
+                                Column(
+                                  children: <Widget>[
+                                    SizedBox(height: 10,),
+                                    Text("Are you sure you want to cancel the flight?"),
+                                    RaisedButton(
+                                      color: Colors.red,
+                                        child: Text("Cancel"),
+                                        onPressed: (){
+                                          Firestore.instance.collection("Flights").document(Emailcon.text)
+                                              .collection("Cancelled").add(
+                                              {"Price":ds["Price"],
+                                                "Duration":ds["Duration"],
+                                                "Company":ds["Company"],
+                                                "Flight_Number":ds["Flight_Number"],
+                                                "From":ds["From"],
+                                                "To":ds["To"],
+                                                "Departure_Date":ds["Departure_Date"],
+
+                                              });
+                                          Firestore.instance.collection("Flights").document(Emailcon.text)
+                                              .collection("Cancelled").document("Blank").delete();
+                                          ds.reference.delete();
+                                          Navigator.pop(context);
+
+
+
+
+                                    }),
+
+                                    ],
+                                ),
+
+                              ) ,
+                              barrierDismissible: false,
+                            );
                           },
                         );
 
@@ -210,10 +275,34 @@ class _HomePageState extends State<HomePage1> with SingleTickerProviderStateMixi
                               Expanded(
                                   child:
                                   ds["Flight_Number"] == null ?
-
                                   Text(" ")
                                       :
-                          Text(ds["Flight_Number"],)
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Card(
+                                        child: Column(
+                                          crossAxisAlignment: CrossAxisAlignment.start,
+                                          children: <Widget>[
+                                            Padding(
+                                              padding: const EdgeInsets.all(8.0),
+                                              child: Text("Flight Number: " +ds["Flight_Number"],),
+                                            ),
+                                            Padding(
+                                              padding: const EdgeInsets.all(8.0),
+                                              child: Text("Departure Date: " +ds["Departure_Date"],),
+                                            ),
+                                            Padding(
+                                              padding: const EdgeInsets.all(8.0),
+                                              child: Text("Destination: " +ds["To"],),
+                                            ),
+                                            Padding(
+                                              padding: const EdgeInsets.all(8.0),
+                                              child: Text("Duration: " +ds["Duration"].toString().replaceAll("H", " Hours ").replaceAll("M", " Minutes").replaceAll("PT", ""),),
+                                            ),
+                                          ],
+                                        )
+                                    ),
+                                  )
 
                               )
 

@@ -1,6 +1,6 @@
-# FLYio
+# flyio
 
-FLYIO is a flutter app for searching, booking, and tracking flights.
+A new Flutter application.
 
 ## Getting Started
 

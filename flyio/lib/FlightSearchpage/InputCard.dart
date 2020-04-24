@@ -4,6 +4,7 @@ import 'package:flyio/FlightSearchpage/multicity_input.dart';
 import 'package:flutter/material.dart';
 import 'package:flyio/FlightSearchpage/Token.dart';
 import 'package:flyio/FlightSearchpage/LoadingScreen.dart';
+import 'package:flyio/List/Getairlinename.dart';
 import 'package:flyio/List/classes.dart';
 import 'package:flyio/List/FetchInfo.dart';
 import 'dart:async' show Future;
@@ -12,6 +13,15 @@ import 'dart:convert';
 import 'package:flyio/List/Page.dart';
 import 'package:async_loader/async_loader.dart';
 import 'package:flyio/FlightSearchpage/Buttons.dart';
+import 'package:flyio/AirportSearch/airportpage.dart';
+import 'package:flyio/airports-IATA.dart';
+import 'package:flyio/NearestAiport/functions.dart';
+import 'package:flyio/NearestAiport/NearestMap.dart';
+import 'package:flyio/NearestAiport/locations_airports.dart';
+import 'package:geolocator/geolocator.dart';
+import 'dart:math';
+
+
 
 class ContentCard extends StatefulWidget {
   @override
@@ -29,6 +39,12 @@ var wherefrom;
 var pass;
 var Airfrom;
 var Airto;
+var iataNearest ;
+var MLON;
+var MLAT;
+final Geolocator geolocator = Geolocator()
+
+  ..forceAndroidLocationManager;
 Future<Info> futureInfo;
 
 String datedep="hihi";
@@ -58,9 +74,12 @@ Future<String> loadIata() async {
 
 String showIata(String airport) {
 //  print(jsonCrossword);
-  decoded = jsonDecode(jsonCrossword);
+  if(airport.length > 3 ){
+//    decoded = jsonDecode(jsonCrossword);return decoded[airport];
+    return airportstoiata[airport]["IATA"];
+  }
 //  print(decoded[airport]);
-  return decoded[airport];
+  else{return airport;}
 
 }
 
@@ -145,7 +164,7 @@ class _ContentCardState extends State<ContentCard> {
         "Search for Flights",
         textAlign: TextAlign.left,
         style: TextStyle(
-          fontFamily: "Indie",
+          fontFamily: "ComicNeue",
           fontSize: 30,
           fontWeight: FontWeight.bold,
 
@@ -178,7 +197,59 @@ class _ContentCardState extends State<ContentCard> {
         Row(
         mainAxisAlignment: MainAxisAlignment.start,
         children: <Widget>[
-          SizedBox(width: 280,),
+          Padding(
+            padding: const EdgeInsets.fromLTRB(10,0,0,0),
+            child: Column(
+              children: <Widget>[
+                FlatButton(
+                  color: Colors.white70,
+                  onPressed: (){
+                    Navigator.push(context,
+                        MaterialPageRoute(
+                            builder: (context) => Airport_page())
+                    );
+                  },
+                  child: Text("Search for Airports"),),
+                FlatButton(
+                  color: Colors.white70,
+                  onPressed: (){
+
+
+
+//                    print(z);
+//                    setState(() {
+//                      var mypoisiton = geolocator
+//                          .getCurrentPosition(desiredAccuracy: LocationAccuracy.best)
+//                          .then((Position position) {
+//                        return position;
+//
+//
+//                      });
+//                      mypoisiton.then((value){
+//                        MLON = value.longitude;
+//                        MLAT = value.latitude;
+//                        print(MLON);
+//                        var z = getClosestAirport(MLON,MLAT);
+//                        print(z);
+                        Navigator.push(context,
+                            MaterialPageRoute(
+                                builder: (context) => MapsDemo())
+                        );
+
+
+//                      });
+
+
+
+//                    });
+
+                  },
+                  child: Text("Find Nearest Airport"),),
+              ],
+            ),
+          ),
+
+          SizedBox(width: 120,),
 
 
           FutureBuilder<Token>(
