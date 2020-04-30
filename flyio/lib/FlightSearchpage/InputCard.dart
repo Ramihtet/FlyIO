@@ -51,12 +51,12 @@ String datedep="hihi";
 String datearr;
 
 String printing(to,from,pass,datedep){
-  print("https://test.api.amadeus.com/v2/shopping/flight-offers?originLocationCode="+from+"&destinationLocationCode="+to+"&departureDate="+datedep+"&adults="+pass+"&max=10");
-  return "https://test.api.amadeus.com/v2/shopping/flight-offers?originLocationCode="+from+"&destinationLocationCode="+to+"&departureDate="+datedep+"&adults="+pass+"&max=10";
+  print("https://test.api.amadeus.com/v2/shopping/flight-offers?originLocationCode="+from+"&destinationLocationCode="+to+"&departureDate="+datedep+"&adults="+pass+"&max=50");
+  return "https://test.api.amadeus.com/v2/shopping/flight-offers?originLocationCode="+from+"&destinationLocationCode="+to+"&departureDate="+datedep+"&adults="+pass+"&max=50";
 }
 String printing_round(to,from,pass,datedep,datearr){
-  print("https://test.api.amadeus.com/v2/shopping/flight-offers?originLocationCode="+from+"&destinationLocationCode="+to+"&departureDate="+datedep+"&returnDate="+datearr+"&adults="+pass+"&max=10");
-  return "https://test.api.amadeus.com/v2/shopping/flight-offers?originLocationCode="+from+"&destinationLocationCode="+to+"&departureDate="+datedep+"&returnDate="+datearr+"&adults="+pass+"&max=10";
+  print("https://test.api.amadeus.com/v2/shopping/flight-offers?originLocationCode="+from+"&destinationLocationCode="+to+"&departureDate="+datedep+"&returnDate="+datearr+"&adults="+pass+"&max=50");
+  return "https://test.api.amadeus.com/v2/shopping/flight-offers?originLocationCode="+from+"&destinationLocationCode="+to+"&departureDate="+datedep+"&returnDate="+datearr+"&adults="+pass+"&max=50";
 }
 Future<String> _loadCrosswordAsset() async {
   return await rootBundle.loadString('assets/airports.json');

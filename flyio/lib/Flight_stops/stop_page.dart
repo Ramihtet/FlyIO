@@ -34,7 +34,7 @@ class Bingo2 extends State<Stops> {
   Widget build(BuildContext context) {
     return new Scaffold(
         body: Stack(children: <Widget>[
-      new Bar(height: 210.0),
+      new Bar(height: 400.0),
       ListView(
         scrollDirection: Axis.vertical,
         shrinkWrap: true,

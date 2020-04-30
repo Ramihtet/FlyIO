@@ -17,7 +17,7 @@ class Bar extends StatelessWidget {
               colors: [Colors.blueAccent, const Color(0x5685F4FF)],
             ),
           ),
-          height: 700,
+          height: 1000,
         ),
         new AppBar(
           backgroundColor: Colors.transparent,

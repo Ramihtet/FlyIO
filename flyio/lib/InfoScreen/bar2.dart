@@ -4,9 +4,9 @@ import 'package:flyio/List/Page.dart';
 
 
 class Bar extends StatelessWidget {
-  final double height;
+//  final double height;
 
-  const Bar({Key key, this.height}) : super(key: key);
+  const Bar({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +20,8 @@ class Bar extends StatelessWidget {
               colors: [Colors.blueAccent, const Color(0x5685F4FF)],
             ),
           ),
-          height: 700,
+          height: 1000,
+
         ),
         new AppBar(
 //          leading: new IconButton(

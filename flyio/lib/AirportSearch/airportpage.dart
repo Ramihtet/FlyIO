@@ -40,7 +40,7 @@ class Bingo3 extends State<Airport_page> {
         body: SingleChildScrollView(
           child: Center(
             child: Stack(children: <Widget>[
-              new Bar(height: 210.0),
+              Bar(height: 2000.0),
               Column(
                 children: <Widget>[
 

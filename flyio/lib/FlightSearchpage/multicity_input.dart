@@ -70,10 +70,18 @@ class _FlightInputState extends State<FlightInput> {
                               Text("Country : "+ iatamain[showIata(wherefromcon.text)]["country"]),
                               Text("City : "+ iatamain[showIata(wherefromcon.text)]["city"]),
                               Text("Name : "+ iatamain[showIata(wherefromcon.text)]["name"]),
+                              iatamain[showIata(wherefromcon.text)]["country"] == "United States"?
                               Container(
                                   height: 50,
                                   width: 30,
-                                  child: Image.network("https://cdn.countryflags.com/thumbs/"+iatamain[showIata(wherefromcon.text)]["country"].toString().replaceAll(" ", "-").toLowerCase()+"/flag-800.png"))
+                                  child: Image.network("https://cdn.countryflags.com/thumbs/united-states-of-america/flag-800.png")
+                              ):
+                              Container(
+                                  height: 50,
+                                  width: 30,
+                                  child: Image.network("https://cdn.countryflags.com/thumbs/"+iatamain[showIata(wherefromcon.text)]["country"].toString().replaceAll(" ", "-").toLowerCase()+"/flag-800.png")
+                              )
+
                             ],
                           ),
 
@@ -122,12 +130,16 @@ class _FlightInputState extends State<FlightInput> {
                               Text("Country : "+ iatamain[showIata(wheretocon.text)]["country"]),
                               Text("City : "+ iatamain[showIata(wheretocon.text)]["city"]),
                               Text("Name : "+ iatamain[showIata(wheretocon.text)]["name"]),
+                              iatamain[showIata(wherefromcon.text)]["country"] == "United States"?
                               Container(
                                   height: 50,
                                   width: 30,
-                                  child: Image.network(
-                                      "https://cdn.countryflags.com/thumbs/"+iatamain[showIata(wheretocon.text)]["country"].toString().replaceAll(" ", "-").toLowerCase()+"/flag-800.png")
-
+                                  child: Image.network("https://cdn.countryflags.com/thumbs/united-states-of-america/flag-800.png")
+                              ):
+                              Container(
+                                  height: 50,
+                                  width: 30,
+                                  child: Image.network("https://cdn.countryflags.com/thumbs/"+iatamain[showIata(wherefromcon.text)]["country"].toString().replaceAll(" ", "-").toLowerCase()+"/flag-800.png")
                               )
 
 

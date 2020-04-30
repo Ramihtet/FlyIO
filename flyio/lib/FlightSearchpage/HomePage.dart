@@ -22,7 +22,7 @@ class FlightSearch extends State<HomePage> {
       resizeToAvoidBottomInset: false,
       body: Stack(
         children: <Widget>[
-         Bar(height: 210.0),
+         Bar(),
           Positioned.fill(
             child: Padding(
               padding: EdgeInsets.only(
